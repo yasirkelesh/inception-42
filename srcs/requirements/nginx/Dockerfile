@@ -1,7 +1,7 @@
 FROM debian:buster
 
 # Gerekli paketlerin yüklenmesi
-RUN apt-get update && apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx systemd
 
 # Nginx konfigürasyon dosyasının kopyalanması
 COPY ./conf/default/ /etc/nginx/sites-enabled/default
