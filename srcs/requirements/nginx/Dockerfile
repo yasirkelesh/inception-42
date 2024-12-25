@@ -14,4 +14,3 @@ RUN chmod +x /var/www/nginx_start.sh
 ENTRYPOINT ["/bin/bash", "-c", "/var/www/nginx_start.sh && exec nginx -g 'daemon off;'"]
 
 EXPOSE 443 80
-cd 
