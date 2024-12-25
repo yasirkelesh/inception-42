@@ -9,8 +9,8 @@ EMAIL="mrkeles@mrkeles.duckdns.org" # E-posta adresini buraya yazın
 # Certbot'un kurulu olup olmadığını kontrol edin
 if ! command -v certbot &> /dev/null; then
     echo "Certbot yüklü değil. Şimdi kurulum yapılıyor..."
-    sudo apt update
-    sudo apt install certbot -y
+    apt update
+    apt install certbot -y
 
     # Certbot kurulum kontrolü
     if ! command -v certbot &> /dev/null; then
@@ -27,7 +27,7 @@ HOST_IP=$(ip route | grep default | awk '{print $3}')
 
 # SSL sertifikası almak için certbot'u çalıştır
 echo "Let's Encrypt üzerinden sertifika alınıyor..."
-sudo certbot certonly --standalone -d $DOMAIN --email $EMAIL --agree-tos --no-eff-email --preferred-challenges http --http-01-address $HOST_IP
+certbot certonly --standalone -d $DOMAIN --email $EMAIL --agree-tos --no-eff-email --preferred-challenges http --http-01-address $HOST_IP
 
 # Sertifika oluşturma sonucu kontrol
 if [ $? -eq 0 ]; then
