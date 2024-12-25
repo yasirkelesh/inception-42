@@ -2,11 +2,10 @@ server {
     listen 443 ssl;
     listen [::]:443 ssl;
 
-    server_name mukeles.42.fr;
+    server_name mrkeles.duckdns.org;
 
-    ssl_certificate /etc/ssl/certs/nginx.crt;
-    ssl_certificate_key /etc/ssl/private/nginx.key;
-    ssl_protocols TLSv1.3;
+    ssl_certificate /etc/letsencrypt/live/mrkeles.duckdns.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/mrkeles.duckdns.org/privkey.pem;
 
     index index.php;
 
