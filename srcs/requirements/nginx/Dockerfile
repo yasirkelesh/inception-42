@@ -13,4 +13,4 @@ RUN chmod +x /var/www/nginx_start.sh
 # Script tamamlandıktan sonra Nginx'in başlatılmasını sağlayan bir ENTRYPOINT yapılandırması
 ENTRYPOINT ["/bin/bash", "-c", "/var/www/nginx_start.sh && exec nginx -g 'daemon off;'"]
 
-EXPOSE 443
+EXPOSE 443 80
