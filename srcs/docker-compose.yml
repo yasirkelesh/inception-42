@@ -56,7 +56,6 @@ services:
       - wordpress
     volumes:
       - wp:/var/www/html
-      - /etc/letsencrypt:/etc/letsencrypt:ro
     networks:
       - app-network
     restart: unless-stopped

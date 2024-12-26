@@ -4,6 +4,7 @@ FROM debian:buster
 RUN apt-get update && apt-get install -y nginx
 
 # Nginx konfigürasyon dosyasının kopyalanması
+COPY /etc/letsencrypt /etc/letsencrypt
 COPY ./conf/default/ /etc/nginx/sites-enabled/default
 
 
