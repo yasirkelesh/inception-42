@@ -3,8 +3,8 @@
 
 
 # Alan adı ve e-posta bilgisi (manuel olarak tanımlayın)
-DOMAIN="mrkeles.duckdns.org" # Alan adını buraya yazın
-EMAIL="mrkeles@mrkeles.duckdns.org" # E-posta adresini buraya yazın
+DOMAIN="417bond.duckdns.org" # Alan adını buraya yazın
+EMAIL="mrkeles@417bond.duckdns.org" # E-posta adresini buraya yazın
 
 # Certbot'un kurulu olup olmadığını kontrol edin
 if ! command -v certbot &> /dev/null; then
@@ -23,12 +23,12 @@ echo "Certbot yüklü."
 
 
 # Ana makinenin IP'sini bul
-HOST_IP=$(ip route | grep default | awk '{print $3}')
+HOST_IP=$(hostname -I | awk '{print $1}')
+echo "Makinenizin IP adresi: $HOST_IP"
 
 # SSL sertifikası almak için certbot'u çalıştır
 echo "Let's Encrypt üzerinden sertifika alınıyor..."
 certbot certonly --standalone -d $DOMAIN --email $EMAIL --agree-tos --no-eff-email --preferred-challenges http --http-01-address $HOST_IP --non-interactive
-
 # Sertifika oluşturma sonucu kontrol
 if [ $? -eq 0 ]; then
     echo "Sertifika başarıyla oluşturuldu!"
@@ -36,6 +36,16 @@ if [ $? -eq 0 ]; then
     echo "/etc/letsencrypt/live/$DOMAIN/"
 else
     echo "Sertifika oluşturulamadı. Lütfen hata mesajlarını kontrol edin."
+    exit 2
+fi
+
+if [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem ] && [ -f /etc/letsencrypt/live/$DOMAIN/privkey.pem ]; then
+    echo "Sertifikalar kopyalanıyor..."
+    sudo  cp /etc/letsencrypt/live/$DOMAIN/fullchain.pem ./srcs/requirements/nginx/tools/fullchain.pem
+    sudo cp /etc/letsencrypt/live/$DOMAIN/privkey.pem ./srcs/requirements/nginx/tools/privkey.pem
+    echo "Sertifikalar başarıyla kopyalandı!"
+else
+    echo "Sertifikalar bulunamadı. Lütfen oluşturma sürecini kontrol edin."
     exit 2
 fi
 
