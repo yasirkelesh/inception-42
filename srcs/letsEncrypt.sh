@@ -49,8 +49,8 @@ fi
 
 if [ -f /etc/letsencrypt/live/$DOMAIN/fullchain.pem ] && [ -f /etc/letsencrypt/live/$DOMAIN/privkey.pem ]; then
     echo "Sertifikalar kopyalanıyor..."
-    sudo  cp /etc/letsencrypt/live/$DOMAIN/fullchain.pem ./srcs/requirements/nginx/tools/fullchain.pem
-    sudo cp /etc/letsencrypt/live/$DOMAIN/privkey.pem ./srcs/requirements/nginx/tools/privkey.pem
+    sudo  cp /etc/letsencrypt/live/$DOMAIN/fullchain.pem ./requirements/nginx/tools/fullchain.pem
+    sudo cp /etc/letsencrypt/live/$DOMAIN/privkey.pem ./requirements/nginx/tools/privkey.pem
     echo "Sertifikalar başarıyla kopyalandı!"
 else
     echo "Sertifikalar bulunamadı. Lütfen oluşturma sürecini kontrol edin."
