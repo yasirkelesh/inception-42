@@ -1,10 +1,16 @@
 #!/bin/bash
 
-
+# .env dosyasını yükle
+if [ -f .env ]; then
+  source .env
+else
+  echo ".env dosyası bulunamadı."
+  exit 1
+fi
 
 # Alan adı ve e-posta bilgisi (manuel olarak tanımlayın)
-DOMAIN="417bond.duckdns.org" # Alan adını buraya yazın
-EMAIL="mrkeles@417bond.duckdns.org" # E-posta adresini buraya yazın
+DOMAIN= $WP_URL # Alan adını buraya yazın
+EMAIL= $WP_USER_EMAIL # E-posta adresini buraya yazın
 
 # Certbot'un kurulu olup olmadığını kontrol edin
 if ! command -v certbot &> /dev/null; then
@@ -28,7 +34,8 @@ echo "Makinenizin IP adresi: $HOST_IP"
 
 # SSL sertifikası almak için certbot'u çalıştır
 echo "Let's Encrypt üzerinden sertifika alınıyor..."
-certbot certonly --standalone -d $DOMAIN --email $EMAIL --agree-tos --no-eff-email --preferred-challenges http --http-01-address $HOST_IP --non-interactive
+certbot certonly --standalone -d $DOMAIN --email $EMAIL --agree-tos --no-eff-email --preferred-challenges http --http-01-address $HOST_IP
+
 # Sertifika oluşturma sonucu kontrol
 if [ $? -eq 0 ]; then
     echo "Sertifika başarıyla oluşturuldu!"
