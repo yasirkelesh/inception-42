@@ -9,8 +9,8 @@ else
 fi
 
 # Alan adı ve e-posta bilgisi (manuel olarak tanımlayın)
-DOMAIN= $WP_URL # Alan adını buraya yazın
-EMAIL= $WP_USER_EMAIL # E-posta adresini buraya yazın
+DOMAIN=$WP_URL # Alan adını buraya yazın
+EMAIL=$WP_USER_EMAIL # E-posta adresini buraya yazın
 
 # Certbot'un kurulu olup olmadığını kontrol edin
 if ! command -v certbot &> /dev/null; then
