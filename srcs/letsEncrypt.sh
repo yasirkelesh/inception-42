@@ -34,7 +34,8 @@ echo "Makinenizin IP adresi: $HOST_IP"
 
 # SSL sertifikası almak için certbot'u çalıştır
 echo "Let's Encrypt üzerinden sertifika alınıyor..."
-certbot certonly --standalone -d $DOMAIN --email $EMAIL --agree-tos --no-eff-email --preferred-challenges http --http-01-address $HOST_IP
+certbot certonly --standalone -d $DOMAIN --email $EMAIL --agree-tos --no-eff-email --preferred-challenges http --http-01-address $HOST_IP --non-interactive
+
 
 # Sertifika oluşturma sonucu kontrol
 if [ $? -eq 0 ]; then
